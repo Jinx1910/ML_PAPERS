@@ -4,3 +4,4 @@ My personal collection of clean, educational PyTorch implementations of classic 
 
 Currently implemented:
 - [Vanilla Seq2Seq with LSTM (Sutskever et al., 2014)](https://arxiv.org/abs/1409.3215) – English → German translation
+- [Neural Machine Translation by Jointly Learning to Align and Translate (Bahdanau et al., 2014)](https://arxiv.org/abs/1409.0473)
