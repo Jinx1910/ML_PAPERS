@@ -53,7 +53,7 @@ class SkipGramDataset(Dataset):
         center, context = self.data[idx]
         return torch.tensor(center, dtype=torch.long),torch.tensor(context, dtype=torch.long)
 
-class SimpleCBOW(nn.Module):
+class CBOW(nn.Module):
     def __init__(self,vocab_size,embedding_dim):
         super().__init__()
         self.embeddings = nn.Embedding(vocab_size,embedding_dim)
@@ -70,7 +70,7 @@ class SimpleCBOW(nn.Module):
         return self.embeddings.weight.detach().cpu().numpy()
 
 
-class SimpleSkipGram(nn.Module):
+class SkipGram(nn.Module):
     def __init__(self, vocab_size, embedding_dim):
         super().__init__()
         self.embeddings = nn.Embedding(vocab_size, embedding_dim)
@@ -96,10 +96,10 @@ lr= 1e-3
 
 if USE_CBOW:
     dataset = CBOWDataset(tokens, stoi, window_size)
-    model = SimpleCBOW(vocab_size, embedding_dim).to(device)
+    model = CBOW(vocab_size, embedding_dim).to(device)
 else:
     dataset = SkipGramDataset(tokens, stoi, window_size)
-    model = SimpleSkipGram(vocab_size, embedding_dim).to(device)
+    model = SkipGram(vocab_size, embedding_dim).to(device)
 
 loader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
